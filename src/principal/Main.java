@@ -2,7 +2,7 @@ package principal;
 
 import java.util.Scanner;
 import controlador.Intermediario;
-import controlador.HibernateUtil;
+import auxiliares.HibernateUtil;
 
 public class Main {
 

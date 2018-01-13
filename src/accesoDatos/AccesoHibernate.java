@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import controlador.HibernateUtil;
+import auxiliares.HibernateUtil;
 import modelo.Empleado;
 import modelo.Lugar;
 import modelo.Notificacion;

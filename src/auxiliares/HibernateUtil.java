@@ -1,4 +1,4 @@
-package controlador;
+package auxiliares;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
