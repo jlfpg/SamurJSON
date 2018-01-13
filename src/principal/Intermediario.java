@@ -9,6 +9,7 @@ import org.ietf.jgss.Oid;
 import org.json.simple.JSONObject;
 
 import modelo.Instalacion;
+import accesoDatos.AccesoJSONRemoto;
 
 public class Intermediario {
 
