@@ -32,10 +32,6 @@ public class AccesoJSONRemoto {
 
 		try {
 
-			System.out.println("---------- Leemos datos de JSON --------------------");
-
-			System.out.println("Lanzamos peticion JSON para instalaciones");
-
 			String url = SERVER_PATH + GET_PLAYER; // Sacadas de configuracion
 
 			//System.out.println("La url a la que lanzamos la petición es " + url); // Traza para pruebas
@@ -82,8 +78,8 @@ public class AccesoJSONRemoto {
 							auxhm.put(codparque, nuevoIns);
 						}
 
-						System.out.println("Acceso JSON Remoto - Leidos datos correctamente y generado hashmap");
-						System.out.println();
+						//System.out.println("Acceso JSON Remoto - Leidos datos correctamente y generado hashmap");
+						//System.out.println();
 
 					} else { // El array de jugadores está vacío
 						System.out.println("Acceso JSON Remoto - No hay datos que tratar");
@@ -133,22 +129,22 @@ public class AccesoJSONRemoto {
 			
 			String json = objPeticion.toJSONString();
 
-			System.out.println("Lanzamos peticion JSON para almacenar un jugador");
+			//System.out.println("Lanzamos peticion JSON para almacenar un jugador");
 
 			String url = SERVER_PATH + SET_PLAYER;
 
-			System.out.println("La url a la que lanzamos la petición es " + url);
-			System.out.println("El json que enviamos es: ");
-			System.out.println(json);
+//			System.out.println("La url a la que lanzamos la petición es " + url);
+//			System.out.println("El json que enviamos es: ");
+//			System.out.println(json);
 			//System.exit(-1);
 
 			String response = encargadoPeticiones.postRequest(url, json);
 			
-			System.out.println("El json que recibimos es: ");
-			
-			System.out.println(response); // Traza para pruebas
-			System.exit(-1);
-			
+//			System.out.println("El json que recibimos es: ");
+//			
+//			System.out.println(response); // Traza para pruebas
+//			System.exit(-1);
+//			
 			// Parseamos la respuesta y la convertimos en un JSONObject
 			
 
@@ -165,7 +161,7 @@ public class AccesoJSONRemoto {
 				String estado = (String) respuesta.get("estado"); 
 				if (estado.equals("ok")) {
 
-					System.out.println("Almacenado jugador enviado por JSON Remoto");
+					//System.out.println("Almacenado jugador enviado por JSON Remoto");
 
 				} else { // Hemos recibido el json pero en el estado se nos
 							// indica que ha habido algún error
@@ -206,20 +202,20 @@ public class AccesoJSONRemoto {
 			
 			String json = objPeticion.toJSONString();
 
-			System.out.println("Lanzamos peticion JSON para almacenar un jugador");
+			//System.out.println("Lanzamos peticion JSON para almacenar un jugador");
 
 			String url = SERVER_PATH + SET_DEL;
 
-			System.out.println("La url a la que lanzamos la petición es " + url);
-			System.out.println("El json que enviamos es: ");
-			System.out.println(json);
+//			System.out.println("La url a la que lanzamos la petición es " + url);
+//			System.out.println("El json que enviamos es: ");
+//			System.out.println(json);
 			//System.exit(-1);
 
 			String response = encargadoPeticiones.postRequest(url, json);
 			
-			System.out.println("El json que recibimos es: ");
+			//System.out.println("El json que recibimos es: ");
 			
-			System.out.println(response); // Traza para pruebas
+			//System.out.println(response); // Traza para pruebas
 			System.exit(-1);
 			
 			// Parseamos la respuesta y la convertimos en un JSONObject
@@ -282,20 +278,20 @@ public class AccesoJSONRemoto {
 			
 			String json = objPeticion.toJSONString();
 
-			System.out.println("Lanzamos peticion JSON para almacenar un jugador");
+			//System.out.println("Lanzamos peticion JSON para almacenar un jugador");
 
 			String url = SERVER_PATH + SET_UP;
 
-			System.out.println("La url a la que lanzamos la petición es " + url);
-			System.out.println("El json que enviamos es: ");
-			System.out.println(json);
+			//System.out.println("La url a la que lanzamos la petición es " + url);
+			//System.out.println("El json que enviamos es: ");
+			//System.out.println(json);
 			//System.exit(-1);
 
 			String response = encargadoPeticiones.postRequest(url, json);
 			
 			System.out.println("El json que recibimos es: ");
 			
-			System.out.println(response); // Traza para pruebas
+			//System.out.println(response); // Traza para pruebas
 			System.exit(-1);
 			
 			// Parseamos la respuesta y la convertimos en un JSONObject

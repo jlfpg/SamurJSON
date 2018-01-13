@@ -17,7 +17,7 @@ public class Intermediario {
 	AccesoJSONRemoto acceso;
 
 	public Intermediario() {
-		this.teclado = new Scanner(System.in); // Para leer las opciones de										// teclado
+		this.teclado = new Scanner(System.in); 
 		this.acceso = new AccesoJSONRemoto();
 	}
 
@@ -25,9 +25,7 @@ public class Intermediario {
 		int op = 0; // Opcion
 		boolean salir = false;
 
-		while (!salir) { // Estructura que repite el algoritmo del menu
-							// principal hasta que se la condicion sea falsa
-			// Se muestra el menu principal
+		while (!salir) { 
 			System.out.println();
 			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Leer Instalaciones  \n"
 					+ ".  2 Añadir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n" + "..........................");
@@ -58,15 +56,12 @@ public class Intermediario {
 					break;
 				}
 
-				// System.exit(1);
-
 			} catch (InputMismatchException e) {
 				System.out.println("Excepcion por opcion invalida: marque un numero de 0 a 4");
 				teclado.next();
 			} catch (Exception e) {
 				System.out.println(
 						"Excepcion desconocida. Traza de error comentada en el método 'ejecucion' de la clase intermediario");
-				// e.printStackTrace();
 				System.out.println("Fin ejecución");
 				System.exit(-1);
 			}
@@ -79,25 +74,19 @@ public class Intermediario {
 	private HashMap<Integer, Instalacion> leeInstalacion() {
 
 		HashMap<Integer, Instalacion> hmAux = acceso.lee();
-
 		return hmAux;
 
 	}
 
 	private void pintaInstalaciones(HashMap<Integer, Instalacion> map) {
 
-		// Recorre el hashmap y va pintando los jugadores (utiliza el método
-		// toString de la clase Jgador
+
 		for (Map.Entry<Integer, Instalacion> entry : map.entrySet()) {
 			System.out.println(entry.getValue());
 		}
-
 	}
 
-
-
 	private Instalacion crearInstalacion() {
-		int codparque;
 		String nombre;
 		String telefono;
 		String direccion;
@@ -105,19 +94,15 @@ public class Intermediario {
 
 		try {
 
-			System.out.println("Escriba el nombre de la instalacion a añadir");
+			System.out.println("Escriba el nombre de la instalacion a añadir:");
 			nombre = teclado.nextLine();
 			nombre=nombre;
-			System.out.println("Escriba el telefono a añadir");
+			System.out.println("Escriba el telefono a añadir:");
 			telefono = teclado.nextLine();
 			telefono=telefono;
-			System.out.println("Escriba la direccion a añadir");
+			System.out.println("Escriba la direccion a añadir:");
 			direccion = teclado.nextLine();
 			direccion=direccion;
-
-			// Aquí lo lógico sería mostrar el listado de equipos y poder
-			// seleccionar uno
-
 
 			jAux = new Instalacion(nombre, telefono, direccion);
 			
@@ -128,24 +113,18 @@ public class Intermediario {
 
 		return jAux;
 		
-
 	}
 	
 	private Instalacion borrarInstalacion() {
 		int codparque;
 		Instalacion jAux = null;
-
+		
 		try {
 
-			System.out.println("Escriba el codigo de la Instalacion que quiere borrar");
+			System.out.println("Escriba el codigo de la Instalacion que quiere borrar:");
 			codparque = teclado.nextInt();
 			codparque=codparque;
 			
-
-			// Aquí lo lógico sería mostrar el listado de equipos y poder
-			// seleccionar uno
-
-
 			jAux = new Instalacion(codparque);
 
 		} catch (InputMismatchException e) {
@@ -167,28 +146,22 @@ public class Intermediario {
 
 		try {
 
-			System.out.println("Escriba el codigo de la Instalacion que quiere actualizar");
+			System.out.println("Escriba el codigo de la Instalacion que quiere actualizar:");
 			codparque = teclado.nextInt();
 			codparque=codparque;
 			
-			System.out.println("Escriba el telefono a añadir");
-			telefono = teclado.nextLine();
-			telefono=telefono;
-			
-			System.out.println("Escriba la direccion a añadir");
-			direccion = teclado.nextLine();
-			direccion=direccion;
-			
-			System.out.println("Escriba el nombre de la instalacion a añadir");
+			System.out.println("Escriba el nombre de la instalacion a añadir:");
 			nombre = teclado.nextLine();
 			nombre=nombre;
 			
+			System.out.println("Escriba el telefono a añadir:");
+			telefono = teclado.nextLine();
+			telefono=telefono;
 			
+			System.out.println("Escriba la direccion a añadir:");
+			direccion = teclado.nextLine();
+			direccion=direccion;
 			
-
-			// Aquí lo lógico sería mostrar el listado de equipos y poder
-			// seleccionar uno
-
 
 			jAux = new Instalacion(codparque,nombre,telefono, direccion);
 
@@ -199,8 +172,6 @@ public class Intermediario {
 
 		return jAux;
 
-		
 	}
-	
 
 }
