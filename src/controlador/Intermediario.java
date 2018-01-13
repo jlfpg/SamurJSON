@@ -1,4 +1,4 @@
-package principal;
+package controlador;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;

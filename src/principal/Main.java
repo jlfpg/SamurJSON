@@ -1,6 +1,7 @@
 package principal;
 
 import java.util.Scanner;
+import controlador.Intermediario;
 
 public class Main {
 
