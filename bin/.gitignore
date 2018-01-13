@@ -1,5 +1,4 @@
-/auxiliares/
-/modelo/
-/principal/
-/accesoDatos/
 /controlador/
+/accesoDatos/
+/principal/
+/hibernate.cfg.xml

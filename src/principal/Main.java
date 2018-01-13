@@ -2,6 +2,7 @@ package principal;
 
 import java.util.Scanner;
 import controlador.Intermediario;
+import controlador.HibernateUtil;
 
 public class Main {
 
@@ -19,8 +20,10 @@ public class Main {
     	if(opcion == 1){
         	}
     	if(opcion == 2){
+    	
         	}
     	if(opcion == 3){
+    		HibernateUtil  hibernate = new HibernateUtil();
         	}
     	if(opcion == 4){
     	Intermediario intermediario = new Intermediario();
