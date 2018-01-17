@@ -18,7 +18,7 @@ public class AccesoJSONRemoto {
 
 		encargadoPeticiones = new ApiRequests();
 
-		SERVER_PATH = "http://localhost/jorge/samur/";
+		SERVER_PATH = "http://localhost/1/proteccionCivil/";
 		GET_PLAYER = "leerInstalacion.php";
 		SET_PLAYER = "escribirInstalacion.php";
 		SET_DEL = "borrarInstalacion.php";
@@ -34,7 +34,7 @@ public class AccesoJSONRemoto {
 
 			String url = SERVER_PATH + GET_PLAYER; // Sacadas de configuracion
 
-			//System.out.println("La url a la que lanzamos la petición es " + url); // Traza para pruebas
+			//System.out.println("La url a la que lanzamos la peticiï¿½n es " + url); // Traza para pruebas
 
 			String response = encargadoPeticiones.getRequest(url);
 
@@ -43,13 +43,13 @@ public class AccesoJSONRemoto {
 			// Parseamos la respuesta y la convertimos en un JSONObject
 			JSONObject respuesta = (JSONObject) JSONValue.parse(response.toString());
 
-			if (respuesta == null) { // Si hay algún error de parseo (json
-										// incorrecto porque hay algún caracter
-										// raro, etc.) la respuesta será null
-				System.out.println("El json recibido no es correcto. Finaliza la ejecución");
+			if (respuesta == null) { // Si hay algï¿½n error de parseo (json
+										// incorrecto porque hay algï¿½n caracter
+										// raro, etc.) la respuesta serï¿½ null
+				System.out.println("El json recibido no es correcto. Finaliza la ejecuciï¿½n");
 				System.exit(-1);
 			} else { // El JSON recibido es correcto
-				// Sera "ok" si todo ha ido bien o "error" si hay algún problema
+				// Sera "ok" si todo ha ido bien o "error" si hay algï¿½n problema
 				String estado = (String) respuesta.get("estado"); 
 				// Si ok, obtenemos array de jugadores para recorrer y generar hashmap
 				if (estado.equals("ok")) { 
@@ -81,13 +81,13 @@ public class AccesoJSONRemoto {
 						//System.out.println("Acceso JSON Remoto - Leidos datos correctamente y generado hashmap");
 						//System.out.println();
 
-					} else { // El array de jugadores está vacío
+					} else { // El array de jugadores estï¿½ vacï¿½o
 						System.out.println("Acceso JSON Remoto - No hay datos que tratar");
 						System.out.println();
 					}
 
 				} else { // Hemos recibido el json pero en el estado se nos
-							// indica que ha habido algún error
+							// indica que ha habido algï¿½n error
 
 					System.out.println("Ha ocurrido un error en la busqueda de datos");
 					System.out.println("Error: " + (String) respuesta.get("error"));
@@ -109,7 +109,7 @@ public class AccesoJSONRemoto {
 		return auxhm;
 	}
 
-	public void añadirInstalacion(Instalacion auxIns) {
+	public void anadirInstalacion(Instalacion auxIns) {
 
 		try {
 			JSONObject objIns = new JSONObject();
@@ -120,7 +120,7 @@ public class AccesoJSONRemoto {
 			objIns.put("direccion", auxIns.getDireccion());
 
 			
-			// Tenemos el jugador como objeto JSON. Lo añadimos a una peticion
+			// Tenemos el jugador como objeto JSON. Lo aï¿½adimos a una peticion
 			// Lo transformamos a string y llamamos al
 			// encargado de peticiones para que lo envie al PHP
 
@@ -133,7 +133,7 @@ public class AccesoJSONRemoto {
 
 			String url = SERVER_PATH + SET_PLAYER;
 
-//			System.out.println("La url a la que lanzamos la petición es " + url);
+//			System.out.println("La url a la que lanzamos la peticiï¿½n es " + url);
 //			System.out.println("El json que enviamos es: ");
 //			System.out.println(json);
 			//System.exit(-1);
@@ -150,21 +150,21 @@ public class AccesoJSONRemoto {
 
 			JSONObject respuesta = (JSONObject) JSONValue.parse(response.toString());
 
-			if (respuesta == null) { // Si hay algún error de parseo (json
-									// incorrecto porque hay algún caracter
-									// raro, etc.) la respuesta será null
-				System.out.println("El json recibido no es correcto. Finaliza la ejecución");
+			if (respuesta == null) { // Si hay algï¿½n error de parseo (json
+									// incorrecto porque hay algï¿½n caracter
+									// raro, etc.) la respuesta serï¿½ null
+				System.out.println("El json recibido no es correcto. Finaliza la ejecuciï¿½n");
 				System.exit(-1);
 			} else { // El JSON recibido es correcto
 				
-				// Sera "ok" si todo ha ido bien o "error" si hay algún problema
+				// Sera "ok" si todo ha ido bien o "error" si hay algï¿½n problema
 				String estado = (String) respuesta.get("estado"); 
 				if (estado.equals("ok")) {
 
 					//System.out.println("Almacenado jugador enviado por JSON Remoto");
 
 				} else { // Hemos recibido el json pero en el estado se nos
-							// indica que ha habido algún error
+							// indica que ha habido algï¿½n error
 
 					System.out.println("Acceso JSON REMOTO - Error al almacenar los datos");
 					System.out.println("Error: " + (String) respuesta.get("error"));
@@ -176,9 +176,9 @@ public class AccesoJSONRemoto {
 			}
 		} catch (Exception e) {
 			System.out.println(
-					"Excepcion desconocida. Traza de error comentada en el método 'annadirJugador' de la clase JSON REMOTO");
+					"Excepcion desconocida. Traza de error comentada en el mï¿½todo 'annadirJugador' de la clase JSON REMOTO");
 			// e.printStackTrace();
-			System.out.println("Fin ejecución");
+			System.out.println("Fin ejecuciï¿½n");
 			System.exit(-1);
 		}
 
@@ -193,7 +193,7 @@ public class AccesoJSONRemoto {
 
 
 			
-			// Tenemos el jugador como objeto JSON. Lo añadimos a una peticion
+			// Tenemos el jugador como objeto JSON. Lo aï¿½adimos a una peticion
 			// Lo transformamos a string y llamamos al
 			// encargado de peticiones para que lo envie al PHP
 
@@ -206,7 +206,7 @@ public class AccesoJSONRemoto {
 
 			String url = SERVER_PATH + SET_DEL;
 
-//			System.out.println("La url a la que lanzamos la petición es " + url);
+//			System.out.println("La url a la que lanzamos la peticiï¿½n es " + url);
 //			System.out.println("El json que enviamos es: ");
 //			System.out.println(json);
 			//System.exit(-1);
@@ -223,21 +223,21 @@ public class AccesoJSONRemoto {
 
 			JSONObject respuesta = (JSONObject) JSONValue.parse(response.toString());
 
-			if (respuesta == null) { // Si hay algún error de parseo (json
-									// incorrecto porque hay algún caracter
-									// raro, etc.) la respuesta será null
-				System.out.println("El json recibido no es correcto. Finaliza la ejecución");
+			if (respuesta == null) { // Si hay algï¿½n error de parseo (json
+									// incorrecto porque hay algï¿½n caracter
+									// raro, etc.) la respuesta serï¿½ null
+				System.out.println("El json recibido no es correcto. Finaliza la ejecuciï¿½n");
 				System.exit(-1);
 			} else { // El JSON recibido es correcto
 				
-				// Sera "ok" si todo ha ido bien o "error" si hay algún problema
+				// Sera "ok" si todo ha ido bien o "error" si hay algï¿½n problema
 				String estado = (String) respuesta.get("estado"); 
 				if (estado.equals("ok")) {
 
 					System.out.println("Almacenado jugador enviado por JSON Remoto");
 
 				} else { // Hemos recibido el json pero en el estado se nos
-							// indica que ha habido algún error
+							// indica que ha habido algï¿½n error
 
 					System.out.println("Acceso JSON REMOTO - Error al almacenar los datos");
 					System.out.println("Error: " + (String) respuesta.get("error"));
@@ -249,9 +249,9 @@ public class AccesoJSONRemoto {
 			}
 		} catch (Exception e) {
 			System.out.println(
-					"Excepcion desconocida. Traza de error comentada en el método 'annadirJugador' de la clase JSON REMOTO");
+					"Excepcion desconocida. Traza de error comentada en el mï¿½todo 'annadirJugador' de la clase JSON REMOTO");
 			// e.printStackTrace();
-			System.out.println("Fin ejecución");
+			System.out.println("Fin ejecuciï¿½n");
 			System.exit(-1);
 		}
 
@@ -269,7 +269,7 @@ public class AccesoJSONRemoto {
 
 
 			
-			// Tenemos el jugador como objeto JSON. Lo añadimos a una peticion
+			// Tenemos el jugador como objeto JSON. Lo aï¿½adimos a una peticion
 			// Lo transformamos a string y llamamos al
 			// encargado de peticiones para que lo envie al PHP
 
@@ -282,14 +282,14 @@ public class AccesoJSONRemoto {
 
 			String url = SERVER_PATH + SET_UP;
 
-			//System.out.println("La url a la que lanzamos la petición es " + url);
+			//System.out.println("La url a la que lanzamos la peticiï¿½n es " + url);
 			//System.out.println("El json que enviamos es: ");
 			//System.out.println(json);
 			//System.exit(-1);
 
 			String response = encargadoPeticiones.postRequest(url, json);
 			
-			System.out.println("El json que recibimos es: ");
+			//System.out.println("El json que recibimos es: ");
 			
 			//System.out.println(response); // Traza para pruebas
 			System.exit(-1);
@@ -299,21 +299,21 @@ public class AccesoJSONRemoto {
 
 			JSONObject respuesta = (JSONObject) JSONValue.parse(response.toString());
 
-			if (respuesta == null) { // Si hay algún error de parseo (json
-									// incorrecto porque hay algún caracter
-									// raro, etc.) la respuesta será null
-				System.out.println("El json recibido no es correcto. Finaliza la ejecución");
+			if (respuesta == null) { // Si hay algï¿½n error de parseo (json
+									// incorrecto porque hay algï¿½n caracter
+									// raro, etc.) la respuesta serï¿½ null
+				System.out.println("El json recibido no es correcto. Finaliza la ejecuciï¿½n");
 				System.exit(-1);
 			} else { // El JSON recibido es correcto
 				
-				// Sera "ok" si todo ha ido bien o "error" si hay algún problema
+				// Sera "ok" si todo ha ido bien o "error" si hay algï¿½n problema
 				String estado = (String) respuesta.get("estado"); 
 				if (estado.equals("ok")) {
 
 					System.out.println("Almacenado jugador enviado por JSON Remoto");
 
 				} else { // Hemos recibido el json pero en el estado se nos
-							// indica que ha habido algún error
+							// indica que ha habido algï¿½n error
 
 					System.out.println("Acceso JSON REMOTO - Error al almacenar los datos");
 					System.out.println("Error: " + (String) respuesta.get("error"));
@@ -325,9 +325,9 @@ public class AccesoJSONRemoto {
 			}
 		} catch (Exception e) {
 			System.out.println(
-					"Excepcion desconocida. Traza de error comentada en el método 'annadirJugador' de la clase JSON REMOTO");
+					"Excepcion desconocida. Traza de error comentada en el mï¿½todo 'annadirJugador' de la clase JSON REMOTO");
 			// e.printStackTrace();
-			System.out.println("Fin ejecución");
+			System.out.println("Fin ejecuciï¿½n");
 			System.exit(-1);
 		}
 

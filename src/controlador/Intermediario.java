@@ -28,7 +28,7 @@ public class Intermediario {
 		while (!salir) { 
 			System.out.println();
 			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Leer Instalaciones  \n"
-					+ ".  2 Añadir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n" + "..........................");
+					+ ".  2 Aï¿½adir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n" + "..........................");
 			try {
 				op = teclado.nextInt();
 				teclado.nextLine();
@@ -43,7 +43,7 @@ public class Intermediario {
 					break;
 				case 2:
 					Instalacion auxIns = this.crearInstalacion();
-					acceso.añadirInstalacion(auxIns);
+					acceso.anadirInstalacion(auxIns);
 					break;
 				case 3:
 					Instalacion auxInst = this.borrarInstalacion();
@@ -61,8 +61,8 @@ public class Intermediario {
 				teclado.next();
 			} catch (Exception e) {
 				System.out.println(
-						"Excepcion desconocida. Traza de error comentada en el método 'ejecucion' de la clase intermediario");
-				System.out.println("Fin ejecución");
+						"Excepcion desconocida. Traza de error comentada en el mï¿½todo 'ejecucion' de la clase intermediario");
+				System.out.println("Fin ejecuciï¿½n");
 				System.exit(-1);
 			}
 		}
@@ -94,13 +94,13 @@ public class Intermediario {
 
 		try {
 
-			System.out.println("Escriba el nombre de la instalacion a añadir:");
+			System.out.println("Escriba el nombre de la instalacion a aï¿½adir:");
 			nombre = teclado.nextLine();
 			nombre=nombre;
-			System.out.println("Escriba el telefono a añadir:");
+			System.out.println("Escriba el telefono a aï¿½adir:");
 			telefono = teclado.nextLine();
 			telefono=telefono;
-			System.out.println("Escriba la direccion a añadir:");
+			System.out.println("Escriba la direccion a aï¿½adir:");
 			direccion = teclado.nextLine();
 			direccion=direccion;
 
@@ -147,18 +147,18 @@ public class Intermediario {
 		try {
 
 			System.out.println("Escriba el codigo de la Instalacion que quiere actualizar:");
-			codparque = teclado.nextInt();
+			codparque = Integer.parseInt(teclado.nextLine());
 			codparque=codparque;
 			
-			System.out.println("Escriba el nombre de la instalacion a añadir:");
+			System.out.println("Escriba el nombre de la instalacion a aï¿½adir:");
 			nombre = teclado.nextLine();
 			nombre=nombre;
 			
-			System.out.println("Escriba el telefono a añadir:");
+			System.out.println("Escriba el telefono a aï¿½adir:");
 			telefono = teclado.nextLine();
 			telefono=telefono;
 			
-			System.out.println("Escriba la direccion a añadir:");
+			System.out.println("Escriba la direccion a aï¿½adir:");
 			direccion = teclado.nextLine();
 			direccion=direccion;
 			

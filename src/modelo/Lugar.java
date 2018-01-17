@@ -19,6 +19,10 @@ public class Lugar {
 		this.direccion = direccion;
 	}
 
+	public Lugar(int codParque) {
+		this.codParque = codParque;
+	}
+	
 	public void setCodParque(int codParque) {
 		this.codParque = codParque;
 	}
