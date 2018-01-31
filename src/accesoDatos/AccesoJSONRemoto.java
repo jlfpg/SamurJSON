@@ -189,7 +189,7 @@ public class AccesoJSONRemoto {
 			JSONObject objInst = new JSONObject();
 			JSONObject objPeticion = new JSONObject();
 
-			objInst.put("codparque", auxInst.getCodParque());
+			objInst.put("codparque", auxInst.getCodparque());
 
 
 			
@@ -262,7 +262,7 @@ public class AccesoJSONRemoto {
 			JSONObject objInsta = new JSONObject();
 			JSONObject objPeticion = new JSONObject();
 
-			objInsta.put("codparque", auxInsta.getCodParque());
+			objInsta.put("codparque", auxInsta.getCodparque());
 			objInsta.put("nombre", auxInsta.getNombre());
 			objInsta.put("telefono", auxInsta.getTelefono());
 			objInsta.put("direccion", auxInsta.getDireccion());
@@ -325,9 +325,9 @@ public class AccesoJSONRemoto {
 			}
 		} catch (Exception e) {
 			System.out.println(
-					"Excepcion desconocida. Traza de error comentada en el m�todo 'annadirJugador' de la clase JSON REMOTO");
+					"Excepcion desconocida. Traza de error comentada en el metodo 'annadirJugador' de la clase JSON REMOTO");
 			// e.printStackTrace();
-			System.out.println("Fin ejecuci�n");
+			System.out.println("Fin ejecucion");
 			System.exit(-1);
 		}
 

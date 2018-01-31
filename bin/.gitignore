@@ -1,6 +1,4 @@
 /accesoDatos/
-/auxiliares/
-/controlador/
-/hibernate.cfg.xml
 /modelo/
-/principal/
+/hibernate.cfg.xml
+/hibernate.reveng.xml
