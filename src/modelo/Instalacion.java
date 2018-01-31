@@ -18,6 +18,7 @@ public class Instalacion implements java.io.Serializable {
 	private String nombre;
 	private String telefono;
 	private String direccion;
+	private int telefonoM;
 
 	public Instalacion() {
 	}
@@ -25,6 +26,11 @@ public class Instalacion implements java.io.Serializable {
 	public Instalacion(String nombre, String telefono, String direccion) {
 		this.nombre = nombre;
 		this.telefono = telefono;
+		this.direccion = direccion;
+	}
+	public Instalacion(String nombre, int telefonoM, String direccion) {
+		this.nombre = nombre;
+		this.telefonoM = telefonoM;
 		this.direccion = direccion;
 	}
 	
@@ -91,5 +97,11 @@ public class Instalacion implements java.io.Serializable {
 		
 		return aux;
 	}
+	
+	public static Instalacion get(int key) {
+		return null;
+	}
+	
+	}
 
-}
+
