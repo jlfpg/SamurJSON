@@ -13,7 +13,7 @@ import controlador.AccesoDatos;
 
 import com.mysql.jdbc.PreparedStatement;
 
-public abstract class BDManager implements AccesoDatos {
+public abstract class BDManager{
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
@@ -61,22 +61,5 @@ public abstract class BDManager implements AccesoDatos {
 
 	}
 
-	@Override
-	public void addOne(String[] datos) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String[][] leeTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void escribeTodos(String[][] listaDatos) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

@@ -141,6 +141,18 @@ public class AccesoMongo implements Datos{
  
         return dbObjectInstalacion;
     }
+
+	@Override
+	public boolean updateInstalacion(HashMap<Integer, Instalacion> instalacion) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteInstalacion(HashMap<Integer, Instalacion> instalacion) {
+		// TODO Auto-generated method stub
+		return false;
+	}
  
  
 }

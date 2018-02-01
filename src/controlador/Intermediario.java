@@ -42,15 +42,21 @@ public class Intermediario {
 					pintaInstalaciones(hm);
 					break;
 				case 2:
-					Instalacion auxIns = this.crearInstalacion();
-					acceso.anadirInstalacion(auxIns);
+					Instalacion ins = this.crearInstalacion();
+					HashMap<Integer, Instalacion> auxIns = new HashMap<Integer, Instalacion>();
+					auxIns.put(1, ins);
+					acceso.guardarInstalacion(auxIns);
 					break;
 				case 3:
-					Instalacion auxInst = this.borrarInstalacion();
-					acceso.delInstalacion(auxInst);
+					Instalacion inst = this.borrarInstalacion();
+					HashMap<Integer, Instalacion> auxInst = new HashMap<Integer, Instalacion>();
+					auxInst.put(1, inst);
+					acceso.deleteInstalacion(auxInst);
 				case 4:
-					Instalacion auxInsta = this.updateInstalacion();
-					acceso.upInstalacion(auxInsta);
+					Instalacion insta = this.updateInstalacion();
+					HashMap<Integer, Instalacion> auxInsta = new HashMap<Integer, Instalacion>();
+					auxInsta.put(1, insta);
+					acceso.updateInstalacion(auxInsta);
 				default:
 					System.out.println("Opcion invalida: marque un numero de 0 a 4");
 					break;
@@ -73,7 +79,7 @@ public class Intermediario {
 
 	private HashMap<Integer, Instalacion> leeInstalacion() {
 
-		HashMap<Integer, Instalacion> hmAux = acceso.lee();
+		HashMap<Integer, Instalacion> hmAux = acceso.obtenerInstalacion();
 		return hmAux;
 
 	}

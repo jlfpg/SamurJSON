@@ -1,5 +1,6 @@
 package accesoDatos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -7,11 +8,12 @@ import java.util.Map.Entry;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import auxiliares.HibernateUtil;
 import modelo.Instalacion;
 
-public class AccesoHibernate {
+public class AccesoHibernate implements Datos {
 
 	Session session;
 
@@ -22,52 +24,106 @@ public class AccesoHibernate {
 	}
 
 	public void cargarTodo() {
-		obtenerLugar();
+		obtenerInstalacion();
 	}
-
 	
-	public HashMap<Integer, Instalacion> obtenerLugar() {
-		Query q = session.createQuery("select dis from Lugar dis");
-		List results = q.list();
-		String clave;
-		HashMap<Integer, Instalacion> dispensadorCreados = new HashMap<Integer, Instalacion>();
-		Iterator equiposIterator = results.iterator();
-
-		while (equiposIterator.hasNext()) {
-			Instalacion team = (Instalacion) equiposIterator.next();
-			// team = new Dispensador(team.getClave(), team.getNombreProducto(),
-			// team.getPrecio(), team.getCantidad());
-			// clave = team.getClave();
-			dispensadorCreados.put(team.getCodparque(), team);
+	@Override
+	public HashMap<Integer, Instalacion> obtenerInstalacion() {
+		HashMap<Integer, Instalacion> instalaciones = new HashMap<Integer, Instalacion>();
+		List<Instalacion> datos = new ArrayList<Instalacion>();
+		Transaction trns = null;
+		try {
+			trns = session.beginTransaction();
+			datos = session.createQuery("from instalacion").list();
+			for (Instalacion i : datos) instalaciones.put(i.getCodparque(),i);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.close();
 		}
-		return dispensadorCreados;
+		return instalaciones;
 	}
 
-	public void guardarLugar(Instalacion ar) {
-		session.beginTransaction();
-		Query q = session.createQuery("select max(codParque) from Lugar");
-		List results = q.list();
-		int id =(int) results.iterator().next()+1;
-		
-		Instalacion lug= new Instalacion(id,ar.getNombre(),ar.getTelefono(),ar.getDireccion());
-		HashMap<Integer, Instalacion> lugar = new HashMap<Integer, Instalacion>();
-		lugar.put(id, lug);
-		for (Entry<Integer, Instalacion> entry : lugar.entrySet()) {
-			session.save(entry.getValue());
-		}
-		
+	@Override
+	public boolean guardarInstalacion(HashMap<Integer, Instalacion> instalacion) {
+		Instalacion in = null;
+		in = instalacion.get(1);
+		Transaction trns=null;
+		try {
+		trns = session.beginTransaction();
+		session.save(in);
 		session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (trns != null) {
+				trns.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.close();
+		}
+		return true;
 	}
-	public void borrarLugar(String nombre) {
-		session.beginTransaction();
-        Query q = session.createQuery("delete from Lugar where codParque = '"+nombre+"'");
-        q.executeUpdate();
-        session.getTransaction().commit();
-    }
+
+	@Override
+	public boolean updateInstalacion(HashMap<Integer, Instalacion> instalacion) {
+		Instalacion in = null;
+		in = instalacion.get(1);
+		Transaction trns=null;
+		try {
+		trns = session.beginTransaction();
+		session.saveOrUpdate(in);
+		session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (trns != null) {
+				trns.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.close();
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteInstalacion(HashMap<Integer, Instalacion> instalacion) {
+		Instalacion ar = null;
+		ar = instalacion.get(1);
+		Transaction trns = null;
+		try {
+			trns = session.beginTransaction();
+			Instalacion ins = session.load(Instalacion.class, ar.getCodparque());
+			session.delete(ins);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (trns != null) {
+				trns.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.close();
+		}
+        return true;
+	}
+	
 	public void borrarLugarTodo() {
-		session.beginTransaction();
-        Query q = session.createQuery("delete from Lugar");
-        q.executeUpdate();
-        session.getTransaction().commit();
+		Transaction trns = null;
+		try {
+			trns=session.beginTransaction();
+			Query q = session.createQuery("delete from instalacion");
+			q.executeUpdate();
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (trns != null) {
+				trns.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.close();
+		}
     }
 }
