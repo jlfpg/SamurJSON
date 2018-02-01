@@ -42,7 +42,6 @@ public class FicherosTexto implements AccesoDatos {
 
 	@Override
 	public void escribeTodos(String[][] listaDatos) {
-		
 
 		FileWriter fichero = null;
 		PrintWriter pw = null;
@@ -66,8 +65,8 @@ public class FicherosTexto implements AccesoDatos {
 			}
 		}
 	}
-public void escribeTodos() {
-		
+
+	public void escribeTodos() {
 
 		FileWriter fichero = null;
 		PrintWriter pw = null;

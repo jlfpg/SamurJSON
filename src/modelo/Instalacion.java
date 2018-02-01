@@ -28,24 +28,26 @@ public class Instalacion implements java.io.Serializable {
 		this.telefono = telefono;
 		this.direccion = direccion;
 	}
+
 	public Instalacion(String nombre, int telefonoM, String direccion) {
 		this.nombre = nombre;
 		this.telefonoM = telefonoM;
 		this.direccion = direccion;
 	}
-	
+
 	public Instalacion(int codparque) {
 		this.codparque = codparque;
-		
+
 	}
+
 	public Instalacion(int codparque, String nombre, String telefono, String direccion) {
 		this.codparque = codparque;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		
+
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -84,24 +86,22 @@ public class Instalacion implements java.io.Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	public String toString(){
-		String aux ="";
-		
+
+	public String toString() {
+		String aux = "";
+
 		aux += "------------------------------------------";
 		aux += "\n	CODIGO: " + this.codparque;
 		aux += "\n	NOMBRE: " + this.nombre;
 		aux += "\n	TELEFONO: " + this.telefono;
 		aux += "\n	DIRECCION: " + this.direccion;
 		aux += "\n------------------------------------------";
-		
+
 		return aux;
 	}
-	
+
 	public static Instalacion get(int key) {
 		return null;
 	}
-	
-	}
 
-
+}

@@ -17,7 +17,7 @@ public class Intermediario {
 	AccesoJSONRemoto acceso;
 
 	public Intermediario() {
-		this.teclado = new Scanner(System.in); 
+		this.teclado = new Scanner(System.in);
 		this.acceso = new AccesoJSONRemoto();
 	}
 
@@ -25,10 +25,11 @@ public class Intermediario {
 		int op = 0; // Opcion
 		boolean salir = false;
 
-		while (!salir) { 
+		while (!salir) {
 			System.out.println();
 			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Leer Instalaciones  \n"
-					+ ".  2 A�adir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n" + "..........................");
+					+ ".  2 A�adir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n"
+					+ "..........................");
 			try {
 				op = teclado.nextInt();
 				teclado.nextLine();
@@ -86,7 +87,6 @@ public class Intermediario {
 
 	private void pintaInstalaciones(HashMap<Integer, Instalacion> map) {
 
-
 		for (Map.Entry<Integer, Instalacion> entry : map.entrySet()) {
 			System.out.println(entry.getValue());
 		}
@@ -102,35 +102,35 @@ public class Intermediario {
 
 			System.out.println("Escriba el nombre de la instalacion a a�adir:");
 			nombre = teclado.nextLine();
-			nombre=nombre;
+			nombre = nombre;
 			System.out.println("Escriba el telefono a a�adir:");
 			telefono = teclado.nextLine();
-			telefono=telefono;
+			telefono = telefono;
 			System.out.println("Escriba la direccion a a�adir:");
 			direccion = teclado.nextLine();
-			direccion=direccion;
+			direccion = direccion;
 
 			jAux = new Instalacion(nombre, telefono, direccion);
-			
+
 		} catch (InputMismatchException e) {
 			System.out.println("Excepcion por opcion invalida: marque un numero de 0 a 4");
 			teclado.next();
 		}
 
 		return jAux;
-		
+
 	}
-	
+
 	private Instalacion borrarInstalacion() {
 		int codparque;
 		Instalacion jAux = null;
-		
+
 		try {
 
 			System.out.println("Escriba el codigo de la Instalacion que quiere borrar:");
 			codparque = teclado.nextInt();
-			codparque=codparque;
-			
+			codparque = codparque;
+
 			jAux = new Instalacion(codparque);
 
 		} catch (InputMismatchException e) {
@@ -140,9 +140,8 @@ public class Intermediario {
 
 		return jAux;
 
-		
 	}
-	
+
 	private Instalacion updateInstalacion() {
 		int codparque;
 		String nombre;
@@ -154,22 +153,21 @@ public class Intermediario {
 
 			System.out.println("Escriba el codigo de la Instalacion que quiere actualizar:");
 			codparque = Integer.parseInt(teclado.nextLine());
-			codparque=codparque;
-			
+			codparque = codparque;
+
 			System.out.println("Escriba el nombre de la instalacion a a�adir:");
 			nombre = teclado.nextLine();
-			nombre=nombre;
-			
+			nombre = nombre;
+
 			System.out.println("Escriba el telefono a a�adir:");
 			telefono = teclado.nextLine();
-			telefono=telefono;
-			
+			telefono = telefono;
+
 			System.out.println("Escriba la direccion a a�adir:");
 			direccion = teclado.nextLine();
-			direccion=direccion;
-			
+			direccion = direccion;
 
-			jAux = new Instalacion(codparque,nombre,telefono, direccion);
+			jAux = new Instalacion(codparque, nombre, telefono, direccion);
 
 		} catch (InputMismatchException e) {
 			System.out.println("Excepcion por opcion invalida: marque un numero de 0 a 4");

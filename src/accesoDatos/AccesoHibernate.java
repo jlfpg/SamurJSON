@@ -26,7 +26,7 @@ public class AccesoHibernate implements Datos {
 	public void cargarTodo() {
 		obtenerInstalacion();
 	}
-	
+
 	@Override
 	public HashMap<Integer, Instalacion> obtenerInstalacion() {
 		HashMap<Integer, Instalacion> instalaciones = new HashMap<Integer, Instalacion>();
@@ -35,7 +35,8 @@ public class AccesoHibernate implements Datos {
 		try {
 			trns = session.beginTransaction();
 			datos = session.createQuery("from instalacion").list();
-			for (Instalacion i : datos) instalaciones.put(i.getCodparque(),i);
+			for (Instalacion i : datos)
+				instalaciones.put(i.getCodparque(), i);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} finally {
@@ -49,11 +50,11 @@ public class AccesoHibernate implements Datos {
 	public boolean guardarInstalacion(HashMap<Integer, Instalacion> instalacion) {
 		Instalacion in = null;
 		in = instalacion.get(1);
-		Transaction trns=null;
+		Transaction trns = null;
 		try {
-		trns = session.beginTransaction();
-		session.save(in);
-		session.getTransaction().commit();
+			trns = session.beginTransaction();
+			session.save(in);
+			session.getTransaction().commit();
 		} catch (RuntimeException e) {
 			if (trns != null) {
 				trns.rollback();
@@ -70,11 +71,11 @@ public class AccesoHibernate implements Datos {
 	public boolean updateInstalacion(HashMap<Integer, Instalacion> instalacion) {
 		Instalacion in = null;
 		in = instalacion.get(1);
-		Transaction trns=null;
+		Transaction trns = null;
 		try {
-		trns = session.beginTransaction();
-		session.saveOrUpdate(in);
-		session.getTransaction().commit();
+			trns = session.beginTransaction();
+			session.saveOrUpdate(in);
+			session.getTransaction().commit();
 		} catch (RuntimeException e) {
 			if (trns != null) {
 				trns.rollback();
@@ -106,13 +107,13 @@ public class AccesoHibernate implements Datos {
 			session.flush();
 			session.close();
 		}
-        return true;
+		return true;
 	}
-	
+
 	public void borrarLugarTodo() {
 		Transaction trns = null;
 		try {
-			trns=session.beginTransaction();
+			trns = session.beginTransaction();
 			Query q = session.createQuery("delete from instalacion");
 			q.executeUpdate();
 			session.getTransaction().commit();
@@ -125,5 +126,5 @@ public class AccesoHibernate implements Datos {
 			session.flush();
 			session.close();
 		}
-    }
+	}
 }

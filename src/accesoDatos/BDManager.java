@@ -13,7 +13,7 @@ import controlador.AccesoDatos;
 
 import com.mysql.jdbc.PreparedStatement;
 
-public abstract class BDManager{
+public abstract class BDManager {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
@@ -35,7 +35,7 @@ public abstract class BDManager{
 			con = DriverManager.getConnection(connurl, username, pwd);
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				
+
 				String tmp[] = line.split("\\+");
 				codNoti = tmp[0];
 				direccion = tmp[1];
@@ -44,7 +44,7 @@ public abstract class BDManager{
 
 				// System.out.println(codNoti + "\t" + direccion + "\t"
 				// +urgencia+ "\t" +tipo);
-				
+
 				String sql = " INSERT INTO notificacion (direccion,urgencia,tipo) values ('" + direccion + "','"
 						+ urgencia + "','" + tipo + "')";
 				ps = (PreparedStatement) con.prepareStatement(sql);
@@ -60,6 +60,5 @@ public abstract class BDManager{
 		}
 
 	}
-
 
 }
