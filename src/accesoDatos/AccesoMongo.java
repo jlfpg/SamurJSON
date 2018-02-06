@@ -145,7 +145,15 @@ public class AccesoMongo implements Datos {
 			e.printStackTrace();
 		}
 	}
-	
+	@Override
+	public void eliminarTodo() {
+		try {
+			db.getCollection("instalacion").drop();
+		} catch (Exception e) {
+			System.out.println("Opcion borrar datos de la instalacion no disponible");
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void actualizarInstalacionM(Instalacion instalacion) {
 		try {

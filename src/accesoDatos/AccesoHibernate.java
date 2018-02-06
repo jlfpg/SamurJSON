@@ -152,5 +152,11 @@ public class AccesoHibernate implements Datos {
 		
 	}
 
+	@Override
+	public void eliminarTodo() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

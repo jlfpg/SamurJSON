@@ -361,5 +361,11 @@ public class AccesoJSONRemoto implements Datos {
 		
 	}
 
+	@Override
+	public void eliminarTodo() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
