@@ -1,32 +1,38 @@
 package accesoDatos;
 
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import com.mongodb.*;
-import com.mongodb.client.*;
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 
+import controlador.Intermediario;
 import modelo.Instalacion;
 
-public class AccesoMongo implements Datos {
 
-	MongoClient mongoClient;
-	MongoCollection<Document> collection;
-	MongoDatabase db;
+public class AccesoMongo implements Datos {
+	Intermediario intermedario;
+	MongoClient mongoClient = new MongoClient("localhost", 27017);
+	MongoDatabase db = mongoClient.getDatabase("instalacion");
+	MongoCollection collection = db.getCollection("instalacion");
+
 
 	public AccesoMongo() {
 		try {
-			// PASO 1: Conexi贸n al Server de MongoDB Pasandole el host y el
+			// PASO 1: Conexi髇 al Server de MongoDB Pasandole el host y el
 			// puerto
 			mongoClient = new MongoClient("localhost", 27017);
 
-			// PASO 2: Conexi贸n a la base de datos
+			// PASO 2: Conexi髇 a la base de datos
 			db = mongoClient.getDatabase("instalacion");
 			System.out.println("Conectado a BD MONGO");
 
@@ -35,43 +41,42 @@ public class AccesoMongo implements Datos {
 			System.out.println("Fin de la ejecucion del programa");
 			System.exit(1);
 		}
-
 	}
 
-	@Override
-	public HashMap<Integer, Instalacion> obtenerInstalacion() {
+	public HashMap<Integer, Instalacion> obtenerInstalacionM() {
 
-		HashMap<Integer, Instalacion> instalacionCreada = new HashMap<Integer, Instalacion>();
+		HashMap<Integer, Instalacion> instalacionCreadas = new HashMap<Integer, Instalacion>();
 
-		Instalacion nuevoIns;
-		String nombre;
-		int telefonoM;
-		String direccion;
+		Instalacion instalacion;
+		String nombre, direccion;
+		int codparque, telefonoM;
+
 		try {
-
 			// PASO 3: Obtenemos una coleccion para trabajar con ella
 			collection = db.getCollection("instalacion");
 
 			// PASO 4.2.1: "READ" -> Leemos todos los documentos de la base de
 			// datos
 			int numDocumentos = (int) collection.count();
-			System.out.println("N煤mero de documentos (registros) en la colecci贸n depositos: " + numDocumentos + "\n");
+			System.out.println("N鷐ero de documentos (registros) en la colecci髇 jugadores: " + numDocumentos + "\n");
 
-			// Busco todos los documentos de la colecci贸n, creo el objeto
+			// Busco todos los documentos de la colecci髇, creo el objeto
 			// deposito y lo almaceno en el hashmap
 			MongoCursor<Document> cursor = collection.find().iterator();
 
 			while (cursor.hasNext()) {
 				Document rs = cursor.next();
+
+				codparque = rs.getInteger("codparque");
 				nombre = rs.getString("nombre");
 				telefonoM = rs.getInteger("telefono");
 				direccion = rs.getString("direccion");
-				nuevoIns = new Instalacion(nombre, telefonoM, direccion);
-				// Una vez creado el deposito con valor de la moneda y cantidad
-				// lo metemos en el hashmap
-				instalacionCreada.put(telefonoM, nuevoIns);
+				
 
-				// System.out.println(cursor.next().toString());
+				instalacion = new Instalacion(codparque, nombre, telefonoM, direccion);
+
+				instalacionCreadas.put(codparque, instalacion);
+
 			}
 		} catch (Exception ex) {
 			System.out.println("Error leyendo la coleccion: no se ha podido acceder a los datos");
@@ -81,60 +86,84 @@ public class AccesoMongo implements Datos {
 			System.exit(1);
 		}
 
-		System.out.println("Leidos datos de la coleccion de Depositos");
-		return instalacionCreada;
+		return instalacionCreadas;
+	}
+
+	@Override
+	public void guardarInstalacionM(Instalacion instalacion) {
+		try {
+			Document document = new Document();
+			document.put("codparque",instalacion.getCodparque() );
+			document.put("nombre", instalacion.getNombre());
+			document.put("telefono", instalacion.getTelefonoM());
+			document.put("direccion", instalacion.getDireccion());
+
+			collection.insertOne(document);
+			mongoClient.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	@Override
+	public void actualizarInstalacionM(Instalacion instalacion) {
+		try {
+			collection = db.getCollection("instalacion");
+			
+			Document filter = new Document("codparque", instalacion.getCodparque());
+			Document document = new Document();
+			
+			document.put("nombre", instalacion.getNombre());
+			document.put("telefono", instalacion.getTelefonoM());
+			document.put("direccion", instalacion.getDireccion());
+			
+			Bson updateOperationDocument = new Document("$set", document);
+			collection.updateOne(filter, updateOperationDocument);
+			
+			mongoClient.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	@Override
+	public void eliminarInstalacionM(Instalacion instalacion) {
+		Document document = new Document();
+		document.put("codparque", instalacion.getCodparque());
+		document.put("nombre", instalacion.getCodparque());
+		document.put("telefono", instalacion.getTelefonoM());
+		document.put("direccion", instalacion.getDireccion());
+
+		collection.deleteOne(document);
+ 
+		mongoClient.close();
+
+	}
+
+	Document depToDocument(Instalacion auxIns) {
+		// Creamos una instancia Documento
+		Document dbObjectDeposito = new Document();
+
+		dbObjectDeposito.append("codparque", auxIns.getCodparque());
+		dbObjectDeposito.append("nombre", auxIns.getNombre());
+		dbObjectDeposito.append("telefono", auxIns.getTelefonoM());
+		dbObjectDeposito.append("direccion", auxIns.getDireccion());
+
+		return dbObjectDeposito;
+	}
+
+	@Override
+	public HashMap<Integer, Instalacion> obtenerInstalacion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public boolean guardarInstalacion(HashMap<Integer, Instalacion> instalacion) {
-		boolean todoOK = false;
-
-		todoOK = this.guardarIns(instalacion);
-
-		return todoOK;
-
-	}
-
-	// Actualizamos borrando la colleccion y volviendo a escribir
-	private boolean guardarIns(HashMap<Integer, Instalacion> instalacion) {
-		boolean todoOK = true;
-
-		try {
-			Instalacion auxIns;
-			collection = db.getCollection("instalacion");
-
-			// Para que salga ordenado el hashmap de monedas (de stackoverflow)
-			SortedSet<Integer> keys = new TreeSet<Integer>(instalacion.keySet());
-			for (int key : keys) {
-
-				auxIns = (Instalacion) Instalacion.get(key);
-
-				Bson filtro = new Document("telefono", auxIns.getTelefono());
-				Bson cambio = new Document("nombre", auxIns.getNombre());
-				Bson actualizacion = new Document("$set", cambio);
-
-				collection.updateOne(filtro, actualizacion);
-
-			}
-		} catch (Exception e) {
-			todoOK = false;
-			System.out.println("Opcion guardar datos de Depositos no disponible por el momento");
-			e.printStackTrace();
-		}
-
-		return todoOK;
-
-	}
-
-	private Document depToDocument(Instalacion auxIns) {
-		// Creamos una instancia Documento
-		Document dbObjectInstalacion = new Document();
-
-		dbObjectInstalacion.append("nombre", auxIns.getNombre());
-		dbObjectInstalacion.append("telefono", auxIns.getTelefono());
-		dbObjectInstalacion.append("direccion", auxIns.getDireccion());
-
-		return dbObjectInstalacion;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -148,5 +177,4 @@ public class AccesoMongo implements Datos {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

@@ -1,10 +1,15 @@
 package accesoDatos;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import modelo.Instalacion;
 
 public interface Datos {
+	
+	public HashMap<Integer, Instalacion> obtenerInstalacionM();
+	public void guardarInstalacionM(Instalacion instalacion);
+	public void eliminarInstalacionM(Instalacion instalacion);
+	public void actualizarInstalacionM(Instalacion instalacion);
 
 	public HashMap<Integer, Instalacion> obtenerInstalacion();
 
@@ -14,4 +19,6 @@ public interface Datos {
 
 	public boolean deleteInstalacion(HashMap<Integer, Instalacion> instalacion);
 
+	
+		
 }

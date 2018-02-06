@@ -39,6 +39,12 @@ public class Instalacion implements java.io.Serializable {
 		this.codparque = codparque;
 
 	}
+	public Instalacion(int codparque, String nombre, int telefonoM, String direccion) {
+		this.codparque=codparque;
+		this.nombre = nombre;
+		this.telefonoM = telefonoM;
+		this.direccion = direccion;
+	}
 
 	public Instalacion(int codparque, String nombre, String telefono, String direccion) {
 		this.codparque = codparque;
@@ -86,6 +92,14 @@ public class Instalacion implements java.io.Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	public int getTelefonoM() {
+		return telefonoM;
+	}
+
+	public void setTelefonoM(int telefonoM) {
+		this.telefonoM = telefonoM;
+	}
 
 	public String toString() {
 		String aux = "";
@@ -93,7 +107,7 @@ public class Instalacion implements java.io.Serializable {
 		aux += "------------------------------------------";
 		aux += "\n	CODIGO: " + this.codparque;
 		aux += "\n	NOMBRE: " + this.nombre;
-		aux += "\n	TELEFONO: " + this.telefono;
+		aux += "\n	TELEFONO: " + this.telefonoM;
 		aux += "\n	DIRECCION: " + this.direccion;
 		aux += "\n------------------------------------------";
 

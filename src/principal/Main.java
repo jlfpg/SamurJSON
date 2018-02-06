@@ -2,6 +2,7 @@ package principal;
 
 import java.util.Scanner;
 import controlador.Intermediario;
+import controlador.IntermediarioM;
 import auxiliares.HibernateUtil;
 
 import java.util.Scanner;
@@ -38,7 +39,8 @@ public class Main {
 			Intermediario intermediario = new Intermediario();
 			intermediario.ejecucion();
 		} else if (opcion == 5) {
-
+			IntermediarioM intermediarioM = new IntermediarioM();
+			intermediarioM.ejecucion();
 		}
 	}
 

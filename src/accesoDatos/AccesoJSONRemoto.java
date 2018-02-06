@@ -337,4 +337,29 @@ public class AccesoJSONRemoto implements Datos {
 		return true;
 	}
 
+	@Override
+	public HashMap<Integer, Instalacion> obtenerInstalacionM() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void guardarInstalacionM(Instalacion instalacion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarInstalacionM(Instalacion instalacion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actualizarInstalacionM(Instalacion instalacion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
