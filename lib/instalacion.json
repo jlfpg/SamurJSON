@@ -1,0 +1,38 @@
+[
+   {
+      "_id":{
+         "$oid":"5a7197b35478be1877d3bc50"
+      },
+      "codparque":6,
+      "nombre":"Coliseo",
+      "telefono":913458675,
+      "direccion":"Italia"
+   },
+   {
+      "_id":{
+         "$oid":"5a7197b35478be1877d3bc51"
+      },
+      "codparque":7,
+      "nombre":"Las ventas",
+      "telefono":913489944,
+      "direccion":"Madrid"
+   },
+   {
+      "_id":{
+         "$oid":"5a7842fa5989b21db0cc7f5f"
+      },
+      "codparque":8,
+      "nombre":"Harish Taware",
+      "telefono":90000,
+      "direccion":"FT/PT"
+   },
+   {
+      "_id":{
+         "$oid":"5a79913c65353d2b44c8285e"
+      },
+      "codparque":12,
+      "nombre":"edu",
+      "telefono":91,
+      "direccion":"no esta"
+   }
+]
