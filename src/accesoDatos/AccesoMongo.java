@@ -1,5 +1,8 @@
 package accesoDatos;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -150,7 +153,7 @@ public class AccesoMongo implements Datos {
 		try {
 			db.getCollection("instalacion").drop();
 		} catch (Exception e) {
-			System.out.println("Opcion borrar datos de la instalacion no disponible");
+			System.out.println("Opcion borrar todos los datos de instalacion no disponible");
 			e.printStackTrace();
 		}
 	}
@@ -175,6 +178,57 @@ public class AccesoMongo implements Datos {
 			System.out.println("Opcion actualizar datos de la instalacion no disponible");
 			e.printStackTrace();
 		}
+	}	
+	
+	@Override
+	public void escribirFicheros() {
+		 final String FILENAME = "./Ficheros/Datos/datos.txt";
+		 HashMap<Integer, Instalacion> instalacionesCreadas = new HashMap<Integer, Instalacion>();
+
+			Instalacion instalacion;
+
+			String nombre, direccion;
+			int codparque, telefonoM;
+				// PASO 3: Obtenemos una coleccion para trabajar con ella
+				collection = db.getCollection("instalacion");
+
+				// PASO 4.2.1: "READ" -> Leemos todos los documentos de la base de
+				// datos
+				int numDocumentos = (int) collection.count();
+				System.out.println("Número de documentos (registros) en la colección instalacion: " + numDocumentos + "\n");
+
+				// Busco todos los documentos de la colección, creo el objeto
+				// deposito y lo almaceno en el hashmap
+				MongoCursor<Document> cursor = collection.find().iterator();
+
+				while (cursor.hasNext()) {
+					Document rs = cursor.next();
+
+					codparque = rs.getInteger("codparque");
+					nombre = rs.getString("nombre");
+					telefonoM = rs.getInteger("telefono");
+					direccion = rs.getString("direccion");
+					
+
+					instalacion = new Instalacion(codparque, nombre, telefonoM, direccion);
+
+					instalacionesCreadas.put(codparque, instalacion);
+
+				}
+				
+		 try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME))) {
+
+				String content = instalacionesCreadas.toString();;
+
+				bw.write(content);
+
+				System.out.println("Datos volcados en fichero 'datos.txt' que esta en la ruta Ficheros-Datos-datos.txt");
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+
+			}
 	}	
 
 	Document depToDocument(Instalacion auxIns) {

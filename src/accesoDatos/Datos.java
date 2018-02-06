@@ -11,6 +11,7 @@ public interface Datos {
 	public void eliminarInstalacionM(Instalacion instalacion);
 	public void actualizarInstalacionM(Instalacion instalacion);
 	public void eliminarTodo();
+	public void escribirFicheros();
 
 	public HashMap<Integer, Instalacion> obtenerInstalacion();
 

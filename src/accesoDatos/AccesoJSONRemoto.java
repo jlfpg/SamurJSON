@@ -367,5 +367,11 @@ public class AccesoJSONRemoto implements Datos {
 		
 	}
 
+	@Override
+	public void escribirFicheros() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

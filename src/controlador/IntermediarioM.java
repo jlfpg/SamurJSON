@@ -36,7 +36,7 @@ public class IntermediarioM {
 			System.out.println();
 			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Leer Instalaciones  \n"
 					+ ".  2 A�adir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n"
-					+ ".  5 Borrar todas las instalaciones \n" + "..........................");
+					+ ".  5 Borrar todas las instalaciones \n" + ".  6 Volcado de datos a ficheros \n" + "..........................");
 
 			try {
 				ops = teclado.nextInt();
@@ -77,6 +77,11 @@ public class IntermediarioM {
 						System.out.println("No se ha borrado todo");
 						ejecucion();	
 					}
+				case 6:
+					System.out.println("Datos volcados en fichero 'datos.txt' que esta en la ruta Ficheros-Datos-datos.txt");
+					AccesoMongo m1 = new AccesoMongo();
+					m1.escribirFicheros();
+					ejecucion();
 				default:
 					System.out.println("Opcion invalida: marque un numero de 0 a 4");
 					break;
