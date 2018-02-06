@@ -15,16 +15,36 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
-import controlador.Intermediario;
+
+import controlador.IntermediarioM;
 import modelo.Instalacion;
 
 
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+
+
 public class AccesoMongo implements Datos {
-	Intermediario intermedario;
+	IntermediarioM intermedario;
 	MongoClient mongoClient = new MongoClient("localhost", 27017);
 	MongoDatabase db = mongoClient.getDatabase("instalacion");
 	MongoCollection collection = db.getCollection("instalacion");
-
+	int contador = 0;
+	ArrayList<Instalacion> jugadoresfin = new ArrayList<Instalacion>();
 
 	public AccesoMongo() {
 		try {
@@ -45,20 +65,22 @@ public class AccesoMongo implements Datos {
 
 	public HashMap<Integer, Instalacion> obtenerInstalacionM() {
 
-		HashMap<Integer, Instalacion> instalacionCreadas = new HashMap<Integer, Instalacion>();
+		HashMap<Integer, Instalacion> instalacionesCreadas = new HashMap<Integer, Instalacion>();
 
 		Instalacion instalacion;
+
 		String nombre, direccion;
 		int codparque, telefonoM;
 
 		try {
+
 			// PASO 3: Obtenemos una coleccion para trabajar con ella
 			collection = db.getCollection("instalacion");
 
 			// PASO 4.2.1: "READ" -> Leemos todos los documentos de la base de
 			// datos
 			int numDocumentos = (int) collection.count();
-			System.out.println("Número de documentos (registros) en la colección jugadores: " + numDocumentos + "\n");
+			System.out.println("Número de documentos (registros) en la colección instalacion: " + numDocumentos + "\n");
 
 			// Busco todos los documentos de la colección, creo el objeto
 			// deposito y lo almaceno en el hashmap
@@ -75,7 +97,7 @@ public class AccesoMongo implements Datos {
 
 				instalacion = new Instalacion(codparque, nombre, telefonoM, direccion);
 
-				instalacionCreadas.put(codparque, instalacion);
+				instalacionesCreadas.put(codparque, instalacion);
 
 			}
 		} catch (Exception ex) {
@@ -86,7 +108,7 @@ public class AccesoMongo implements Datos {
 			System.exit(1);
 		}
 
-		return instalacionCreadas;
+		return instalacionesCreadas;
 	}
 
 	@Override
@@ -102,9 +124,27 @@ public class AccesoMongo implements Datos {
 			mongoClient.close();
 			
 		} catch (Exception e) {
+			System.out.println("Opcion guardar datos de la instalacion no disponible");
 			e.printStackTrace();
 		}
 	}	
+	
+	@Override
+	public void eliminarInstalacionM(Instalacion instalacion) {
+		try {
+		Document document = new Document();
+		document.put("codparque", instalacion.getCodparque());
+		
+
+		System.out.println(document);
+		collection.deleteOne(document);
+ 
+		mongoClient.close();
+		} catch (Exception e) {
+			System.out.println("Opcion borrar datos de la instalacion no disponible");
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public void actualizarInstalacionM(Instalacion instalacion) {
@@ -124,23 +164,10 @@ public class AccesoMongo implements Datos {
 			mongoClient.close();
 			
 		} catch (Exception e) {
+			System.out.println("Opcion actualizar datos de la instalacion no disponible");
 			e.printStackTrace();
 		}
 	}	
-	
-	@Override
-	public void eliminarInstalacionM(Instalacion instalacion) {
-		Document document = new Document();
-		document.put("codparque", instalacion.getCodparque());
-		document.put("nombre", instalacion.getCodparque());
-		document.put("telefono", instalacion.getTelefonoM());
-		document.put("direccion", instalacion.getDireccion());
-
-		collection.deleteOne(document);
- 
-		mongoClient.close();
-
-	}
 
 	Document depToDocument(Instalacion auxIns) {
 		// Creamos una instancia Documento

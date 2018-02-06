@@ -34,16 +34,16 @@ public class Instalacion implements java.io.Serializable {
 		this.telefonoM = telefonoM;
 		this.direccion = direccion;
 	}
-
-	public Instalacion(int codparque) {
-		this.codparque = codparque;
-
-	}
 	public Instalacion(int codparque, String nombre, int telefonoM, String direccion) {
 		this.codparque=codparque;
 		this.nombre = nombre;
 		this.telefonoM = telefonoM;
 		this.direccion = direccion;
+	}
+
+	public Instalacion(int codparque) {
+		this.codparque = codparque;
+
 	}
 
 	public Instalacion(int codparque, String nombre, String telefono, String direccion) {

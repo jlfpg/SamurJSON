@@ -12,51 +12,58 @@ import accesoDatos.AccesoMongo;
 public class IntermediarioM {
 
 	Scanner teclado;
-	AccesoMongo acceso;
-	public String nombre, direccion;
+	AccesoMongo accesoM;
 	Datos datos;
 	HashMap<Integer, Instalacion> hm = new HashMap<>();
+	public String nombre, direccion;
 	public int codparque, telefonoM;
 
 	public IntermediarioM() {
-		this.teclado = new Scanner(System.in);
-		this.acceso = new AccesoMongo();
+		this.teclado = new Scanner(System.in); // Para leer las opciones de //
+												// teclado
+		this.accesoM = new AccesoMongo();
 	}
 
 	public void ejecucion() {
 		int op = 0; // Opcion
+		int as = 0;
+		int ops = 0;
 		boolean salir = false;
+		HashMap<Integer, Instalacion> auxJugador3 = null;
+		datos = new AccesoMongo();
+		while (!salir) { // Estructura que repite el algoritmo del menu
 
-		while (!salir) {
 			System.out.println();
 			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Leer Instalaciones  \n"
 					+ ".  2 Aï¿½adir Instalacion \n" + ".  3 Borrar Instalacion \n" + ".  4 Actualizar Instalacion \n"
 					+ "..........................");
+
 			try {
-				op = teclado.nextInt();
+				ops = teclado.nextInt();
 				teclado.nextLine();
-				System.out.println("OPCION SELECCIONADA:" + op);
-				switch (op) {
+				System.out.println("OPCION SELECCIONADA:" + ops);
+				switch (ops) {
 				case 0:
 					salir = true;
 					break;
 				case 1:
 					hm = datos.obtenerInstalacionM();
 					pintaInstalacion(hm);
-					break;
+					ejecucion();
 				case 2:
 					Instalacion instalacion = crearInstalacion();
 					hm.put(codparque, instalacion);
 					datos.guardarInstalacionM(instalacion);
-					break;
+					ejecucion();
 				case 3:
 					Instalacion instalacion1 = eliminarInstalacion();
 					hm.remove(codparque, instalacion1.getCodparque());
 					datos.eliminarInstalacionM(instalacion1);
-					break;
+					ejecucion();
 				case 4:
 					Instalacion instalacion2 = actualizarInstalacion();
 					datos.actualizarInstalacionM(instalacion2);
+					ejecucion();
 				default:
 					System.out.println("Opcion invalida: marque un numero de 0 a 4");
 					break;
@@ -68,22 +75,19 @@ public class IntermediarioM {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(
-						"Excepcion desconocida. Traza de error comentada en el mï¿½todo 'ejecucion' de la clase intermediario");
-				System.out.println("Fin ejecuciï¿½n");
-				System.exit(-1);
+						"Excepcion desconocida. Traza de error comentada en el método 'ejecucion' de la clase intermediario");
 			}
+			break;
+
 		}
-
-		// teclado.close();
-
 	}
 
 	private void pintaInstalacion(HashMap<Integer, Instalacion> map) {
 
-
 		for (Map.Entry<Integer, Instalacion> entry : map.entrySet()) {
 
 			Instalacion insAux = entry.getValue();
+			System.out.println(insAux);
 		}
 
 	}
@@ -147,38 +151,6 @@ public class IntermediarioM {
 			teclado.next();
 		}
 		return iAux2;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public int getCodparque() {
-		return codparque;
-	}
-
-	public void setCodparque(int codparque) {
-		this.codparque = codparque;
-	}
-
-	public int getTelefonoM() {
-		return telefonoM;
-	}
-
-	public void setTelefonoM(int telefonoM) {
-		this.telefonoM = telefonoM;
 	}
 
 }
