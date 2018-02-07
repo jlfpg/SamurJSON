@@ -9,17 +9,16 @@ import accesoDatos.Datos;
 import accesoDatos.FicherosMYSQL;
 import modelo.Empleado;
 import modelo.Instalacion;
-import modelo.InstalacionF;
 import modelo.Notificacion;
 
 public class IntermediarioF {
 	Scanner teclado;
 	FicherosMYSQL acceso;
 	//public String dni, direccion, nombre, apellido,fechaNacimiento;
-	controlador.Datos datos;
+	FicherosMYSQL fich = new FicherosMYSQL();
 	HashMap<String, Empleado> hm = new HashMap<>();
 	HashMap<Integer, Notificacion> hm2 = new HashMap<>();
-	HashMap<Integer, InstalacionF> hm3 = new HashMap<>();
+	HashMap<Integer, Instalacion> hm3 = new HashMap<>();
 	//public int codparque;
 
 	public IntermediarioF() {
@@ -33,7 +32,7 @@ public class IntermediarioF {
 
 		while (!salir) {
 			System.out.println();
-			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Empleados  \n"
+			System.out.println("........ MENU ........... \n" + ".  0 Salir \n" + ".  1 Instalaciones  \n"
 					+ ".  2 Notificaciones \n" + ".  3 Instalaciones" 
 					+ "..........................");
 
@@ -45,21 +44,13 @@ public class IntermediarioF {
 				case 0:
 					salir = true;
 					break;
+				
+					
 				case 1:
-					datos.guardarEmpleados(hm); 
-					leeEmpleado();
-					break;
+					fich.guardarInstalacion(hm3);
+					fich.obtenerInstalacion();
 					
-				case 2:
-					
-					datos.guardarNotificaciones(hm2);
-					leeNotificacion();
-					break;
-					
-				case 3:
-					datos.guardarInstalaciones(hm3);
-					leeInstalacion();
-					
+					System.out.println(fich.obtenerInstalacion());
 					break;
 				default:
 					System.out.println("Opcion invalida: marque un numero de 0 a 2");
@@ -78,25 +69,8 @@ public class IntermediarioF {
 			}
 		}
 	}
-	private HashMap<String, Empleado> leeEmpleado() {
 
-		HashMap<String, Empleado> hmAux = datos.obtenerEmpleados();
-		return hmAux;
-
-	}
 	
-	private HashMap<Integer, Notificacion> leeNotificacion() {
-
-		HashMap<Integer, Notificacion> hmAux = datos.obtenerNotificaciones();
-		return hmAux;
-
-	}
 	
-	private HashMap<Integer, InstalacionF> leeInstalacion() {
-
-		HashMap<Integer, InstalacionF> hmAux = datos.obtenerInstalaciones();
-		return hmAux;
-
-	}
 	
 }
