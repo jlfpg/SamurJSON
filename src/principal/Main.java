@@ -2,11 +2,13 @@ package principal;
 
 import java.util.Scanner;
 import controlador.Intermediario;
+import controlador.IntermediarioF;
 import controlador.IntermediarioM;
 import auxiliares.HibernateUtil;
 
 import java.util.Scanner;
 import controlador.Intermediario;
+import controlador.IntermediarioF;
 import auxiliares.HibernateUtil;
 
 public class Main {
@@ -29,6 +31,8 @@ public class Main {
 		} else if (opcion == 1) {
 			System.out.println(
 					"Interfaz por consola no implementada, aunque el codigo correspondiente a esta parte entregada en anteriores actividades si que esta.");
+				IntermediarioF intermediarioF = new IntermediarioF();
+				intermediarioF.ejecucion();
 		} else if (opcion == 2) {
 			System.out.println(
 					"Interfaz por consola no implementada, aunque el codigo correspondiente a esta parte entregada en anteriores actividades si que esta.");
