@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="505.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.InstalacionController">
+   <children>
+      <TabPane layoutX="-42.0" layoutY="-86.0" prefHeight="523.0" prefWidth="764.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Instalacion">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="874.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="13.0" prefHeight="24.0" prefWidth="59.0" text="Buscador" />
+                        <TextField fx:id="instalacionFilterField" layoutX="94.0" layoutY="11.0" />
+                        <TableView fx:id="lugarTable" layoutX="6.0" layoutY="53.0" onMouseClicked="#clickItem" prefHeight="365.0" prefWidth="874.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                          <columns>
+                            <TableColumn fx:id="codParque" editable="false" prefWidth="107.36097574234009" text="Cod.Parque" />
+                            <TableColumn fx:id="nombre" editable="false" prefWidth="208.63562774658203" text="Nombre" />
+                              <TableColumn fx:id="direccion" editable="false" prefWidth="354.3643798828125" text="Direccion" />
+                              <TableColumn fx:id="telefono" editable="false" prefWidth="199.0" text="Telefono" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="insUp" layoutX="802.0" layoutY="431.0" mnemonicParsing="false" onAction="#insUpInstal" text="Nuevo" />
+                        <Button fx:id="borrar" layoutX="606.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarInstal" text="Borrar" textFill="#e70404" />
+                        <Button fx:id="refrescar" layoutX="793.0" layoutY="12.0" mnemonicParsing="false" onAction="#cargarLugar" text="" />
+                        <Button fx:id="borrarTodo" layoutX="679.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoLugar" text="Borrar Todo" textFill="#e70404" />
+                        <TextField fx:id="txtfCodParque" layoutX="73.0" layoutY="431.0" prefHeight="27.0" prefWidth="90.0" promptText="Cod.Parque" />
+                        <TextField fx:id="txtfNombre" layoutX="174.0" layoutY="431.0" prefHeight="27.0" prefWidth="252.0" promptText="Nombre" />
+                        <TextField fx:id="txtfDireccion" layoutX="437.0" layoutY="431.0" prefHeight="27.0" prefWidth="219.0" promptText="Direccion" />
+                        <TextField fx:id="txtfTelefono" layoutX="663.0" layoutY="431.0" prefHeight="27.0" prefWidth="123.0" promptText="Telefono" />
+                        <Button fx:id="btnLimpiar" layoutX="28.0" layoutY="431.0" mnemonicParsing="false" onAction="#limpiar" prefHeight="27.0" prefWidth="32.0" text="X" textFill="#e10f0f" />
+                        <ComboBox fx:id="adatMenu" layoutX="300.0" layoutY="12.0" prefHeight="27.0" prefWidth="287.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

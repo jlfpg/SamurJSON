@@ -18,7 +18,6 @@ public class AccesoHibernate implements Datos {
 	Session session;
 
 	public AccesoHibernate() {
-
 		HibernateUtil util = new HibernateUtil();
 		session = util.getSessionFactory().openSession();
 	}
@@ -32,8 +31,11 @@ public class AccesoHibernate implements Datos {
 		HashMap<Integer, Instalacion> instalaciones = new HashMap<Integer, Instalacion>();
 		List<Instalacion> datos = new ArrayList<Instalacion>();
 		Transaction trns = null;
+		System.out.println("1");
+
 		try {
 			trns = session.beginTransaction();
+			System.out.println("2");
 			datos = session.createQuery("from instalacion").list();
 			for (Instalacion i : datos)
 				instalaciones.put(i.getCodparque(), i);
@@ -148,18 +150,6 @@ public class AccesoHibernate implements Datos {
 
 	@Override
 	public void actualizarInstalacionM(Instalacion instalacion) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminarTodo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void escribirFicheros() {
 		// TODO Auto-generated method stub
 		
 	}

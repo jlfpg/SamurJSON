@@ -1,7 +1,7 @@
 /accesoDatos/
+/application/
 /auxiliares/
 /controlador/
-/hibernate.cfg.xml
-/hibernate.reveng.xml
 /modelo/
 /principal/
+/vista/

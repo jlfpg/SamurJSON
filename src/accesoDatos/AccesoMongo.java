@@ -1,8 +1,5 @@
 package accesoDatos;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,11 +48,11 @@ public class AccesoMongo implements Datos {
 
 	public AccesoMongo() {
 		try {
-			// PASO 1: Conexión al Server de MongoDB Pasandole el host y el
+			// PASO 1: Conexiï¿½n al Server de MongoDB Pasandole el host y el
 			// puerto
 			mongoClient = new MongoClient("localhost", 27017);
 
-			// PASO 2: Conexión a la base de datos
+			// PASO 2: Conexiï¿½n a la base de datos
 			db = mongoClient.getDatabase("instalacion");
 			System.out.println("Conectado a BD MONGO");
 
@@ -83,9 +80,9 @@ public class AccesoMongo implements Datos {
 			// PASO 4.2.1: "READ" -> Leemos todos los documentos de la base de
 			// datos
 			int numDocumentos = (int) collection.count();
-			System.out.println("Número de documentos (registros) en la colección instalacion: " + numDocumentos + "\n");
+			System.out.println("Nï¿½mero de documentos (registros) en la colecciï¿½n instalacion: " + numDocumentos + "\n");
 
-			// Busco todos los documentos de la colección, creo el objeto
+			// Busco todos los documentos de la colecciï¿½n, creo el objeto
 			// deposito y lo almaceno en el hashmap
 			MongoCursor<Document> cursor = collection.find().iterator();
 
@@ -148,15 +145,7 @@ public class AccesoMongo implements Datos {
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public void eliminarTodo() {
-		try {
-			db.getCollection("instalacion").drop();
-		} catch (Exception e) {
-			System.out.println("Opcion borrar todos los datos de instalacion no disponible");
-			e.printStackTrace();
-		}
-	}
+	
 	@Override
 	public void actualizarInstalacionM(Instalacion instalacion) {
 		try {
@@ -178,57 +167,6 @@ public class AccesoMongo implements Datos {
 			System.out.println("Opcion actualizar datos de la instalacion no disponible");
 			e.printStackTrace();
 		}
-	}	
-	
-	@Override
-	public void escribirFicheros() {
-		 final String FILENAME = "./Ficheros/Datos/datos.txt";
-		 HashMap<Integer, Instalacion> instalacionesCreadas = new HashMap<Integer, Instalacion>();
-
-			Instalacion instalacion;
-
-			String nombre, direccion;
-			int codparque, telefonoM;
-				// PASO 3: Obtenemos una coleccion para trabajar con ella
-				collection = db.getCollection("instalacion");
-
-				// PASO 4.2.1: "READ" -> Leemos todos los documentos de la base de
-				// datos
-				int numDocumentos = (int) collection.count();
-				System.out.println("Número de documentos (registros) en la colección instalacion: " + numDocumentos + "\n");
-
-				// Busco todos los documentos de la colección, creo el objeto
-				// deposito y lo almaceno en el hashmap
-				MongoCursor<Document> cursor = collection.find().iterator();
-
-				while (cursor.hasNext()) {
-					Document rs = cursor.next();
-
-					codparque = rs.getInteger("codparque");
-					nombre = rs.getString("nombre");
-					telefonoM = rs.getInteger("telefono");
-					direccion = rs.getString("direccion");
-					
-
-					instalacion = new Instalacion(codparque, nombre, telefonoM, direccion);
-
-					instalacionesCreadas.put(codparque, instalacion);
-
-				}
-				
-		 try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME))) {
-
-				String content = instalacionesCreadas.toString();;
-
-				bw.write(content);
-
-				System.out.println("Datos volcados en fichero 'datos.txt' que esta en la ruta Ficheros-Datos-datos.txt");
-
-			} catch (IOException e) {
-
-				e.printStackTrace();
-
-			}
 	}	
 
 	Document depToDocument(Instalacion auxIns) {

@@ -334,7 +334,7 @@ public class AccesoJSONRemoto implements Datos {
 			System.exit(-1);
 		}
 
-		return true;
+		return false;
 	}
 
 	@Override
@@ -357,18 +357,6 @@ public class AccesoJSONRemoto implements Datos {
 
 	@Override
 	public void actualizarInstalacionM(Instalacion instalacion) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminarTodo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void escribirFicheros() {
 		// TODO Auto-generated method stub
 		
 	}
